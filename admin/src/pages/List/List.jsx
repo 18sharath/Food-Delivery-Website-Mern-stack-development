@@ -30,20 +30,23 @@ console.log(response.data);
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
-          <b>Action</b>
+          
           <b>Price</b>
+          <b>Action</b>
         </div>
         {list.map((item,index)=>{
           return (
             <div key={index} className='list-table-format'>
               <img src={`${url}/images/`+item.image} alt=''/>
               <p>{item.name}</p>
-           
-              <p>${item.price}</p>
               <p>{item.category}</p>
-               <p>X</p>
-            </div>
 
+              <p>${item.price}</p>
+
+               <p>X</p>
+               console.log(item.price);
+            </div>
+            
           )
         })}
 
