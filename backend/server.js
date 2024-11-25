@@ -4,6 +4,7 @@
  import cors from "cors"//Using cors, you can configure your server to accept requests from specific domains, or allow requests from any domain if needed. Here’s how it is typically used:
 import { connectDB } from "./config/db.js"
 import foodRouter from "./routes/foodRoute.js"
+import userRouter from "./routes/userRoutes.js"
 
 
 
@@ -28,6 +29,7 @@ connectDB();
 // api endpoints
 app.use('/api/food',foodRouter)
 app.use("/images",express.static('uploads'))
+app.use("/api/user",userRouter) 
 
 app.get("/",(req,res)=>{
     res.send("API working")

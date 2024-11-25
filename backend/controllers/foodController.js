@@ -13,7 +13,8 @@ const addFood=async(req,res)=>{
     const food=new foodmodel({
         name:req.body.name,
         description:req.body.description,
-        price:req.body.category,
+        price:req.body.price,
+        category:req.body.category,
         image:image_filename
     })
     try{
@@ -50,7 +51,7 @@ const removeFood=async(req,res)=>{
     }catch(error)
     {
         console.log(error);
-        res.json({sucess:false,message:'error'});
+        res.json({success:false,message:'error'});
         
     }
 }
