@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import validator from 'validator'
 
 
-const createToken=(id)=>{
+const createToken=(id)=>{ // we are taking the user id and returning the token
     return jwt.sign({id},process.env.JWT_SECRET)
 }
 
@@ -32,6 +32,7 @@ const loginUser=async (req,res)=>{
 
 
 }
+
 
 
 // register user
