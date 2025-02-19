@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 // 2) authorization
 // 3) data intigrity
 
-export const authMiddleware=async(req,res,next)=>{
+const authMiddleware=async(req,res,next)=>{
     const {token}=req.headers;
     if(!token)
     {
@@ -19,6 +19,7 @@ export const authMiddleware=async(req,res,next)=>{
         res.json({success:false,message:"Error"});
     }
 }
+export default authMiddleware;
 
 
 

@@ -1,5 +1,5 @@
-import orderModel from "../models/orderModel";
-import userModel from "../models/usermodel";
+import orderModel from "../models/orderModel.js";
+import userModel from "../models/usermodel.js";
 
 import Stripe from "stripe"
 
@@ -15,9 +15,9 @@ const placeOrder = async (req, res) => {
             address: req.body.address
         })
         await newOrder.save();
-        await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+        await userModel.findByIdAndUpdate(req.body.userID, { cartData: {} });
 
-        const line_items = req.body.itmes.map((item) => ({
+        const line_items = req.body.items.map((item) => ({
 
             price_data: {
                 currency: "inr",
