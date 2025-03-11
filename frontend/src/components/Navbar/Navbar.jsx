@@ -3,9 +3,20 @@ import './Navbar.css'
 import { assets } from '../../assets/assets'
 import { Link } from 'react-router-dom'
 import { Storecontext } from '../../context/Storecontext'
+import { useNavigate } from 'react-router-dom'
 const Navbar = ({ setShowLogin }) => {
-  const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setToken } = useContext(Storecontext);
+const [menu, setMenu] = useState("home");
+const { getTotalCartAmount, token, setToken } = useContext(Storecontext);
+ 
+
+  const navigate=useNavigate(); //is a hook provided by the react-router-dom library in React. It is used to programmatically navigate to different routes in your application. 
+  // logout user
+  const logout=()=>{
+      localStorage.removeItem("token");// Remove the token from localStorage
+      setToken("");// Clear the token from the context
+      navigate("/");
+  }
+
   return (
     <div className='navbar'>
       <Link to='/'><img src={assets.logo} alt='' className='logo' /></Link>
@@ -28,7 +39,7 @@ const Navbar = ({ setShowLogin }) => {
             <ul className='nav-profile-dropdown'>
               <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
               <hr />
-              <li><img src={assets.logout_icon} alt="" /><p>Orders</p></li>
+              <li onClick={logout} ><img src={assets.logout_icon} alt="" /><p>Logout</p></li> 
 
             </ul>
           </div>
@@ -39,3 +50,6 @@ const Navbar = ({ setShowLogin }) => {
 }
 
 export default Navbar
+
+
+
