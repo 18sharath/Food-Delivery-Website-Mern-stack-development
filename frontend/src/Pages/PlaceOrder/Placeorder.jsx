@@ -1,5 +1,8 @@
 import React, { useContext, useState } from 'react';
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
 import './Placeorder.css';
 import { Storecontext } from '../../context/Storecontext';
 const Placeorder = () => {
@@ -28,6 +31,7 @@ const Placeorder = () => {
   // useEffect(()=>{
   //     console.log(data)
   // },[data])
+<<<<<<< HEAD
   // 8:12
 
   const placeorder = async (event) => {
@@ -37,10 +41,23 @@ const Placeorder = () => {
       if (cartItems[item._id] > 0) {
         let itemInfo = item;
         itemInfo["quantity"] = cartItems[item._id];
+=======
+// 8:12
+
+  const placeorder=async (event)=>{
+    event.preventDefault();
+    let orderItems=[];
+    food_list.map((item)=>{
+      if(cartItems[item._id]>0)
+      {
+        let itemInfo = item;
+        itemInfo["quantity"]=cartItems[item._id] ;
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
         orderItems.push(itemInfo);
 
       }
     })
+<<<<<<< HEAD
     
     let orderData = {
       address: data,
@@ -62,6 +79,18 @@ const Placeorder = () => {
 
 
   }
+=======
+    let orderData ={
+       address:data,
+       items:orderItems,
+       amount:getTotalCartAmount()+2 
+
+
+    }
+    let response=await axios.post(`${url}/api/order/place`, orderData); 
+    
+  } 
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
 
   return (
     <form onSubmit={placeorder} className='place-order'>
@@ -69,15 +98,25 @@ const Placeorder = () => {
         <p className="title">Delivery Information</p>
         <div className="multi-fields">
           <input required name='firstname' onChange={onChangeHandler} value={data.firstname} type="text" placeholder='First Name' />
+<<<<<<< HEAD
           <input required name='lastname' onChange={onChangeHandler} value={data.lastname} type="text" placeholder='Last Name' />
+=======
+          <input required  name='lastname' onChange={onChangeHandler} value={data.lastname} type="text" placeholder='Last Name' />
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
         </div>
         <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email address' />
         <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
         <div className="multi-fields">
           <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='city' />
+<<<<<<< HEAD
           <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='state' />
         </div>
         <div className="multi-fields">
+=======
+          <input required name='state'onChange={onChangeHandler} value={data.state} type="text" placeholder='state' />
+        </div>
+        <div className="multi-fields">  
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
           <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Pin Code' />
           <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
         </div>
@@ -102,7 +141,11 @@ const Placeorder = () => {
               <b>${getTotalCartAmount() + (getTotalCartAmount() === 0 ? 0 : 2)}</b>
             </div>
           </div>
+<<<<<<< HEAD
           <button type='submit' >Proceed To payment</button>
+=======
+          <button type='submit'>Proceed To payment</button>
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
         </div>
       </div>
 

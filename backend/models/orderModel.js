@@ -10,8 +10,12 @@ const orderSchema=new mongoose.Schema({
     address:{type:Object,required:true},
     status:{type:String,default:"Food processing"},
     date:{type:Date,default:Date.now()},
+<<<<<<< HEAD
     payment:{type:Boolean,default:false},
     
+=======
+    payment:{type:Boolean,default:false}
+>>>>>>> 9318b2611041fc2619d913f59a391ae474bb7dfa
 
 })
 
