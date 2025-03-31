@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import "./Verify.css"
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Storecontext } from '../../context/Storecontext';
-
+import axios from 'axios';
 
 const Verify = () => {
 
@@ -21,8 +21,13 @@ const verifyPayment=async(req,res)=>{
         navigate("/")
     }
 
+    // 8:34
+
 
 }
+useEffect(()=>{
+verifyPayment();
+},[])
   return (
     <div className='verify'>
         <div className='spinner'></div> 
@@ -31,4 +36,4 @@ const verifyPayment=async(req,res)=>{
   )
 }
 
-export default Verify
+export default Verify;

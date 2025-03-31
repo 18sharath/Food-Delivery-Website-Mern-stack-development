@@ -1,12 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './Placeorder.css';
 import { Storecontext } from '../../context/Storecontext';
-// import {loadStripe} from "@stripe/stripe-js"
-
-
-
-// const stripePromise = loadStripe("pk_test_51R3GaoC0uLEAOiePU9pUFw1mus1B6tf25jnhVW8ZCE6YB9j80UtTv7fmBsBtbBeo5c9qIOPsiZkhv56nww7u0c1u006FtOqDNk");
+import { useNavigate, useNavigation } from 'react-router-dom'
 const Placeorder = () => {
   const { getTotalCartAmount, url, token, food_list, cartItems } = useContext(Storecontext)
   const [data, setData] = useState({
@@ -37,7 +33,17 @@ const Placeorder = () => {
   // },[data])
   // 8:12
 
-
+const navigate= useNavigate();
+useEffect(()=>{
+    if(!token)
+    {
+      navigate('/cart');
+    }
+    else if (getTotalCartAmount() === 0)
+    {
+      navigate('/cart');  
+    }
+},[token])
 
 
 
@@ -52,7 +58,7 @@ const Placeorder = () => {
 
       }
     })
-    console.log(orderItems);
+    
 
     
     let orderData = {
@@ -69,10 +75,10 @@ const Placeorder = () => {
 
     
    try{
-    console.log("calling /place")
+    
     let response = await axios.post(`${url}/api/order/place`, orderData, { headers: { token }});
-    console.log("after /place")
-    console.log(response);
+    
+    
     if (response.data.success) {
       // console.log(response.data);
       const { session_url } = response.data;
@@ -87,23 +93,7 @@ const Placeorder = () => {
    }
     
     
-    
-  //   try {
-  //     let response = await axios.post(`${url}/api/order/place`, orderData, { 
-  //         headers: { token }
-  //     });
-  //     // console.log("Response from server:", response.data);
-  //     if (response.data.success) {
-  //       const { session_url } = response.data;
-  //         window.location.replace(session_url);
-  //     } else {
-  //         alert("Error: " + response.data.message);
-  //     }
-  // } catch (error) {
-  //     console.error("Error in placing order:", error.response ? error.response.data : error.message);
-  //     alert("Error in placing order. Check console.");
-  // }
-  
+
 
 
   } 
